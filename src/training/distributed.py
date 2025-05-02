@@ -1,5 +1,6 @@
 import os
 import time
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.distributed as dist
@@ -42,14 +43,23 @@ def ddp_train(rank, world_size, model_name, data_path, epochs, lr, batch_size):
     train_loader = DataLoader(train_loader.dataset, batch_size=batch_size, sampler=sampler)
 
     input_dim = X_train.shape[1]
+        # Build model + loss
     if model_name == "dnn":
-        model = DNN(input_dim); criterion = nn.BCEWithLogitsLoss()
+        model = DNN(input_dim)
+        criterion = nn.BCEWithLogitsLoss()
     elif model_name == "autoencoder":
-        model = Autoencoder(input_dim); criterion = nn.MSELoss()
-    elif model_name == 'cnn':
-        return CNNClassifier(input_dim)
-    elif model_name == 'transformer':
-        return TransformerClassifier(input_dim)
+        model = Autoencoder(input_dim)
+        criterion = nn.MSELoss()
+    elif model_name == "cnn":
+        from models.cnn import CNNClassifier
+        model = CNNClassifier(input_dim)
+        criterion = nn.BCEWithLogitsLoss()
+    elif model_name == "transformer":
+        from models.transformer import TransformerClassifier
+        model = TransformerClassifier(input_dim)
+        criterion = nn.BCEWithLogitsLoss()
+    else:
+        raise ValueError(f"Unsupported model type: {model_name}")
     model.to(device)
     model = nn.parallel.DistributedDataParallel(
         model, device_ids=[rank] if backend=="nccl" else None
@@ -77,30 +87,66 @@ def ddp_train(rank, world_size, model_name, data_path, epochs, lr, batch_size):
     logger.info(f"Total training time (rank {rank}): {train_time:.2f}s")
 
     # Evaluation on rank 0
-    if rank == 0 and model_name == "dnn":
-        logger.info("Evaluating on rank 0")
-        all_preds, all_labels = [], []
-        model.eval()
+    if rank == 0:
+        if model_name == "autoencoder":
+            logger.info("Evaluating autoencoder as anomaly detector (rank 0)")
+            # Train errors (on full train dataset)
+            # NOTE: we only have sampler/train_loader; let's recreate a full loader:
+            full_train_loader = DataLoader(
+                train_loader.dataset, batch_size=batch_size, shuffle=False
+            )
+            model.eval()
+            train_errors = []
+            with torch.no_grad():
+                for Xb, _ in full_train_loader:
+                    Xb = Xb.to(device)
+                    errs = torch.mean((model(Xb) - Xb) ** 2, dim=1).cpu().numpy()
+                    train_errors.extend(errs)
+            threshold = np.percentile(train_errors, 95)
+            logger.info(f"Threshold (95th pct): {threshold:.4f}")
 
-        # Measure inference time
-        inf_start = time.perf_counter()
-        with torch.no_grad():
-            for X_batch, y_batch in test_loader:
-                X_batch = X_batch.to(device)
-                probs = torch.sigmoid(model(X_batch)).cpu().numpy()
-                preds = (probs > 0.5).astype(int)
-                all_preds.extend(preds)
-                all_labels.extend(y_batch.numpy().astype(int))
-        inference_time = time.perf_counter() - inf_start
-        logger.info(f"Total inference time: {inference_time:.2f}s")
+            # Test errors & inference timing
+            test_errors, true_labels = [], []
+            inf_start = time.perf_counter()
+            with torch.no_grad():
+                for Xb, yb in test_loader:
+                    Xb = Xb.to(device)
+                    errs = torch.mean((model(Xb) - Xb) ** 2, dim=1).cpu().numpy()
+                    test_errors.extend(errs)
+                    true_labels.extend(yb.numpy().astype(int))
+            inference_time = time.perf_counter() - inf_start
+            logger.info(f"Inference time (AE): {inference_time:.2f}s")
 
-        # Compute and report metrics
-        metrics = compute_all_metrics(all_labels, all_preds)
-        metrics["train_time"] = train_time
-        metrics["inference_time"] = inference_time
-        print_metrics(metrics)
-        save_path = save_metrics(metrics)
-        logger.info(f"Metrics (with timings) saved to {save_path}")
+            preds = (np.array(test_errors) > threshold).astype(int)
+            metrics = compute_all_metrics(true_labels, preds)
+            metrics["train_time"]     = train_time
+            metrics["inference_time"] = inference_time
+            print_metrics(metrics)
+            save_path = save_metrics(metrics)
+            logger.info(f"AE metrics saved to {save_path}")
+
+        else:
+            # Classifier evaluation (unchanged)
+            logger.info("Evaluating classifier (rank 0)")
+            all_preds, all_labels = [], []
+            inf_start = time.perf_counter()
+            model.eval()
+            with torch.no_grad():
+                for Xb, yb in test_loader:
+                    Xb = Xb.to(device)
+                    prob = torch.sigmoid(model(Xb)).cpu().numpy()
+                    preds = (prob > 0.5).astype(int)
+                    all_preds.extend(preds)
+                    all_labels.extend(yb.numpy().astype(int))
+            inference_time = time.perf_counter() - inf_start
+            logger.info(f"Inference time: {inference_time:.2f}s")
+
+            metrics = compute_all_metrics(all_labels, all_preds)
+            metrics["train_time"]     = train_time
+            metrics["inference_time"] = inference_time
+            print_metrics(metrics)
+            save_path = save_metrics(metrics)
+            logger.info(f"Classifier metrics saved to {save_path}")
 
     dist.destroy_process_group()
     logger.info(f"Rank {rank} done")

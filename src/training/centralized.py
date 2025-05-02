@@ -1,5 +1,6 @@
 import os
 import time
+import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -41,9 +42,11 @@ def train(model_name='dnn', data_path='data.csv', epochs=10, lr=1e-3, batch_size
         model = Autoencoder(input_dim)
         criterion = nn.MSELoss()
     elif model_name == 'cnn':
-        return CNNClassifier(input_dim)
+        model = CNNClassifier(input_dim)
+        criterion = nn.BCEWithLogitsLoss()
     elif model_name == 'transformer':
-        return TransformerClassifier(input_dim)
+        model = TransformerClassifier(input_dim)
+        criterion = nn.BCEWithLogitsLoss()
     else:
         raise ValueError("Unsupported model type. Choose 'dnn' or 'autoencoder'.")
     model.to(device)
@@ -69,7 +72,21 @@ def train(model_name='dnn', data_path='data.csv', epochs=10, lr=1e-3, batch_size
     logger.info(f"Total training time: {train_time:.2f}s")
 
     # Evaluation
-    if model_name == 'dnn':
+    if model_name == 'autoencoder':
+        logger.info("Evaluating autoencoder as anomaly detector")
+        # 1) Compute train reconstruction errors
+        model.eval()
+        train_errors = []
+        with torch.no_grad():
+            for Xb, _ in train_loader:
+                Xb = Xb.to(device)
+                recon = model(Xb)
+                errs = torch.mean((recon - Xb)**2, dim=1).cpu().numpy()
+                train_errors.extend(errs)
+        # 2) Choose threshold (95th percentile)
+        threshold = np.percentile(train_errors, 95)
+        logger.info(f"Threshold set to 95th percentile of training errors: {threshold:.4f}")
+    else:
         logger.info("Evaluating model")
         all_preds, all_labels = [], []
 
@@ -92,8 +109,6 @@ def train(model_name='dnn', data_path='data.csv', epochs=10, lr=1e-3, batch_size
         print_metrics(metrics)
         save_path = save_metrics(metrics)
         logger.info(f"Metrics (with timings) saved to {save_path}")
-    else:
-        logger.info("Autoencoder training complete (unsupervised); no classification metrics computed.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Centralized training")
