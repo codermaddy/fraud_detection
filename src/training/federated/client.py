@@ -160,10 +160,16 @@ def run_client(
 
     # Start Flower client
     client = FlowerClient(model, train_loader, test_loader, device)
-    fl.client.start_numpy_client(
-        server_address=server_address,
-        client=client,
-    )
+    # Start edit
+    # fl.client.start_numpy_client(
+    #     server_address=server_address,
+    #     client=client,
+    # )
+    fl.client.start_client(
+    server_address=server_address,
+    client=client.to_client(),
+    )   
+    # End edit
 
 
 if __name__ == "__main__":

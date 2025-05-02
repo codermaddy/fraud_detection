@@ -35,8 +35,16 @@ def run_server(model_name: str, num_rounds: int, min_clients: int, server_addres
     print(f"[SERVER] Starting server with model: {model_name}")
     print(f"[SERVER] Listening on: {server_address}")
     print(f"[SERVER] Required clients: {min_clients}, Total Rounds: {num_rounds}")
+    # Start edit
+    # model = get_model(model_name, input_dim=1)
+    # model = get_model(model_name, input_dim=30)
+    import pandas as pd
+    df = pd.read_csv("data/client0.csv")  # adjust path if needed
+    input_dim = df.drop(columns=["Class"]).shape[1]
+    print(f"[SERVER] Using input_dim={input_dim} from client0.csv")
+    model = get_model(model_name, input_dim=input_dim)
 
-    model = get_model(model_name, input_dim=1)
+    # end edit
     initial_params = ndarrays_to_parameters(get_parameters(model))
 
     strategy = FedAvg(

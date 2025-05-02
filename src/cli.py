@@ -5,7 +5,7 @@ import argparse
 # Ensure src is in path
 sys.path.append(os.path.dirname(__file__))
 
-from training import centralized_naive, distributed, centralized_weighted, centralized_weighted_1, centralized_focal, distributed_weighted
+from training import centralized_naive, distributed, centralized_weighted, centralized_weighted_1, centralized_focal, distributed_weighted, distributed_weighted_1
 from training.federated import server as fed_server, client as fed_client
 
 def main():
@@ -66,8 +66,11 @@ def main():
         if args.mode =='naive' :
             distributed.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
                             lr=args.lr, batch_size=args.batch_size, world_size=args.world_size)
-        else :
+        elif args.mode =='weighted':
             distributed_weighted.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
+                            lr=args.lr, batch_size=args.batch_size, world_size=args.world_size)
+        else :
+            distributed_weighted_1.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
                             lr=args.lr, batch_size=args.batch_size, world_size=args.world_size)
             
     elif args.command == "train-federated":

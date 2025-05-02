@@ -1,0 +1,139 @@
+[2025-05-02 17:33:13,685] INFO:distributed: MASTER_ADDR=127.0.0.1, MASTER_PORT=29680
+[INFO] MASTER_ADDR=127.0.0.1, MASTER_PORT=29680
+[2025-05-02 17:33:13,685] INFO:distributed: Spawning 4 processes for DDP
+[INFO] Spawning 4 processes for DDP
+[2025-05-02 17:33:22,278] INFO:ddp_rank2: Rank 2/4 on backend 'nccl'
+[INFO] Rank 2/4 on backend 'nccl'
+[2025-05-02 17:33:22,278] INFO:ddp_rank2: Using device: cuda:2
+[INFO] Using device: cuda:2
+[2025-05-02 17:33:23,233] INFO:ddp_rank3: Rank 3/4 on backend 'nccl'
+[INFO] Rank 3/4 on backend 'nccl'
+[2025-05-02 17:33:23,233] INFO:ddp_rank3: Using device: cuda:3
+[INFO] Using device: cuda:3
+[2025-05-02 17:33:23,270] INFO:ddp_rank1: Rank 1/4 on backend 'nccl'
+[INFO] Rank 1/4 on backend 'nccl'
+[2025-05-02 17:33:23,270] INFO:ddp_rank1: Using device: cuda:1
+[INFO] Using device: cuda:1
+[2025-05-02 17:33:23,277] INFO:ddp_rank0: Rank 0/4 on backend 'nccl'
+[INFO] Rank 0/4 on backend 'nccl'
+[2025-05-02 17:33:23,278] INFO:ddp_rank0: Using device: cuda:0
+[INFO] Using device: cuda:0
+[2025-05-02 17:43:39,423] INFO:ddp_rank2: Starting training
+[INFO] Starting training
+[2025-05-02 17:43:39,424] INFO:ddp_rank0: Starting training
+[INFO] Starting training
+[2025-05-02 17:43:39,424] INFO:ddp_rank3: Starting training
+[INFO] Starting training
+[2025-05-02 17:43:39,425] INFO:ddp_rank1: Starting training
+[INFO] Starting training
+[2025-05-02 17:43:51,157] INFO:ddp_rank3: Epoch 1/10 — loss: 0.0175
+[2025-05-02 17:43:51,157] INFO:ddp_rank0: Epoch 1/10 — loss: 0.0199
+[INFO] Epoch 1/10 — loss: 0.0175
+[INFO] Epoch 1/10 — loss: 0.0199
+[2025-05-02 17:43:51,157] INFO:ddp_rank2: Epoch 1/10 — loss: 0.0165
+[INFO] Epoch 1/10 — loss: 0.0165
+[2025-05-02 17:43:51,158] INFO:ddp_rank1: Epoch 1/10 — loss: 0.0180
+[INFO] Epoch 1/10 — loss: 0.0180
+[2025-05-02 17:44:01,603] INFO:ddp_rank1: Epoch 2/10 — loss: 0.0072
+[INFO] Epoch 2/10 — loss: 0.0072
+[2025-05-02 17:44:01,603] INFO:ddp_rank3: Epoch 2/10 — loss: 0.0064
+[INFO] Epoch 2/10 — loss: 0.0064
+[2025-05-02 17:44:01,603] INFO:ddp_rank0: Epoch 2/10 — loss: 0.0070
+[INFO] Epoch 2/10 — loss: 0.0070
+[2025-05-02 17:44:01,603] INFO:ddp_rank2: Epoch 2/10 — loss: 0.0067
+[INFO] Epoch 2/10 — loss: 0.0067
+[2025-05-02 17:44:17,866] INFO:ddp_rank0: Epoch 3/10 — loss: 0.0064
+[2025-05-02 17:44:17,866] INFO:ddp_rank3: Epoch 3/10 — loss: 0.0074
+[INFO] Epoch 3/10 — loss: 0.0064
+[INFO] Epoch 3/10 — loss: 0.0074
+[2025-05-02 17:44:17,866] INFO:ddp_rank2: Epoch 3/10 — loss: 0.0053
+[INFO] Epoch 3/10 — loss: 0.0053
+[2025-05-02 17:44:17,866] INFO:ddp_rank1: Epoch 3/10 — loss: 0.0050
+[INFO] Epoch 3/10 — loss: 0.0050
+[2025-05-02 17:44:34,292] INFO:ddp_rank0: Epoch 4/10 — loss: 0.0048
+[INFO] Epoch 4/10 — loss: 0.0048
+[2025-05-02 17:44:34,293] INFO:ddp_rank1: Epoch 4/10 — loss: 0.0043
+[INFO] Epoch 4/10 — loss: 0.0043
+[2025-05-02 17:44:34,298] INFO:ddp_rank2: Epoch 4/10 — loss: 0.0076
+[INFO] Epoch 4/10 — loss: 0.0076
+[2025-05-02 17:44:34,299] INFO:ddp_rank3: Epoch 4/10 — loss: 0.0049
+[INFO] Epoch 4/10 — loss: 0.0049
+[2025-05-02 17:44:51,187] INFO:ddp_rank2: Epoch 5/10 — loss: 0.0055
+[INFO] Epoch 5/10 — loss: 0.0055
+[2025-05-02 17:44:51,187] INFO:ddp_rank3: Epoch 5/10 — loss: 0.0038
+[INFO] Epoch 5/10 — loss: 0.0038
+[2025-05-02 17:44:51,187] INFO:ddp_rank1: Epoch 5/10 — loss: 0.0063
+[INFO] Epoch 5/10 — loss: 0.0063
+[2025-05-02 17:44:51,187] INFO:ddp_rank0: Epoch 5/10 — loss: 0.0049
+[INFO] Epoch 5/10 — loss: 0.0049
+[2025-05-02 17:45:08,124] INFO:ddp_rank2: Epoch 6/10 — loss: 0.0051
+[INFO] Epoch 6/10 — loss: 0.0051
+[2025-05-02 17:45:08,128] INFO:ddp_rank3: Epoch 6/10 — loss: 0.0037
+[INFO] Epoch 6/10 — loss: 0.0037
+[2025-05-02 17:45:08,130] INFO:ddp_rank0: Epoch 6/10 — loss: 0.0058
+[2025-05-02 17:45:08,130] INFO:ddp_rank1: Epoch 6/10 — loss: 0.0040
+[INFO] Epoch 6/10 — loss: 0.0058
+[INFO] Epoch 6/10 — loss: 0.0040
+[2025-05-02 17:45:31,890] INFO:ddp_rank2: Epoch 7/10 — loss: 0.0041
+[INFO] Epoch 7/10 — loss: 0.0041
+[2025-05-02 17:45:31,897] INFO:ddp_rank3: Epoch 7/10 — loss: 0.0038
+[2025-05-02 17:45:31,897] INFO:ddp_rank0: Epoch 7/10 — loss: 0.0061
+[INFO] Epoch 7/10 — loss: 0.0038
+[INFO] Epoch 7/10 — loss: 0.0061
+[2025-05-02 17:45:31,904] INFO:ddp_rank1: Epoch 7/10 — loss: 0.0036
+[INFO] Epoch 7/10 — loss: 0.0036
+[2025-05-02 17:45:56,113] INFO:ddp_rank2: Epoch 8/10 — loss: 0.0037
+[INFO] Epoch 8/10 — loss: 0.0037
+[2025-05-02 17:45:56,117] INFO:ddp_rank3: Epoch 8/10 — loss: 0.0047
+[INFO] Epoch 8/10 — loss: 0.0047
+[2025-05-02 17:45:56,124] INFO:ddp_rank0: Epoch 8/10 — loss: 0.0038
+[INFO] Epoch 8/10 — loss: 0.0038
+[2025-05-02 17:45:56,150] INFO:ddp_rank1: Epoch 8/10 — loss: 0.0040
+[INFO] Epoch 8/10 — loss: 0.0040
+[2025-05-02 17:46:23,892] INFO:ddp_rank0: Epoch 9/10 — loss: 0.0043
+[INFO] Epoch 9/10 — loss: 0.0043
+[2025-05-02 17:46:23,899] INFO:ddp_rank1: Epoch 9/10 — loss: 0.0026
+[INFO] Epoch 9/10 — loss: 0.0026
+[2025-05-02 17:46:23,905] INFO:ddp_rank2: Epoch 9/10 — loss: 0.0036
+[INFO] Epoch 9/10 — loss: 0.0036
+[2025-05-02 17:46:23,916] INFO:ddp_rank3: Epoch 9/10 — loss: 0.0040
+[INFO] Epoch 9/10 — loss: 0.0040
+[2025-05-02 17:46:56,376] INFO:ddp_rank3: Epoch 10/10 — loss: 0.0036
+[INFO] Epoch 10/10 — loss: 0.0036
+[2025-05-02 17:46:56,376] INFO:ddp_rank3: Total training time (rank 3): 196.95s
+[INFO] Total training time (rank 3): 196.95s
+[2025-05-02 17:46:56,376] INFO:ddp_rank2: Epoch 10/10 — loss: 0.0035
+[INFO] Epoch 10/10 — loss: 0.0035
+[2025-05-02 17:46:56,376] INFO:ddp_rank2: Total training time (rank 2): 196.95s
+[INFO] Total training time (rank 2): 196.95s
+[2025-05-02 17:46:56,376] INFO:ddp_rank3: Rank 3 done
+[INFO] Rank 3 done
+[2025-05-02 17:46:56,377] INFO:ddp_rank2: Rank 2 done
+[INFO] Rank 2 done
+[2025-05-02 17:46:56,378] INFO:ddp_rank1: Epoch 10/10 — loss: 0.0032
+[2025-05-02 17:46:56,378] INFO:ddp_rank0: Epoch 10/10 — loss: 0.0033
+[INFO] Epoch 10/10 — loss: 0.0032
+[INFO] Epoch 10/10 — loss: 0.0033
+[2025-05-02 17:46:56,379] INFO:ddp_rank1: Total training time (rank 1): 196.95s
+[INFO] Total training time (rank 1): 196.95s
+[2025-05-02 17:46:56,379] INFO:ddp_rank0: Total training time (rank 0): 196.95s
+[INFO] Total training time (rank 0): 196.95s
+[2025-05-02 17:46:56,379] INFO:ddp_rank1: Rank 1 done
+[INFO] Rank 1 done
+[2025-05-02 17:46:56,379] INFO:ddp_rank0: Evaluating classifier (rank 0)
+[INFO] Evaluating classifier (rank 0)
+[2025-05-02 17:47:03,845] INFO:ddp_rank0: Inference time: 7.47s
+[INFO] Inference time: 7.47s
+[2025-05-02 17:47:04,165] INFO:ddp_rank0: Metrics saved to metrics_20250502-174704.json
+[INFO] Metrics saved to metrics_20250502-174704.json
+[2025-05-02 17:47:04,165] INFO:ddp_rank0: Rank 0 done
+[INFO] Rank 0 done
+Evaluation Metrics:
+  accuracy: 0.9987
+  precision: 0.5878
+  recall: 0.8878
+  f1_score: 0.7073
+  train_time: 196.9542
+  inference_time: 7.4664
+[2025-05-02 17:47:05,534] INFO:distributed: Distributed training complete
+[INFO] Distributed training complete
