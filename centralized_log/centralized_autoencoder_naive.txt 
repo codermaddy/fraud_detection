@@ -1,0 +1,32 @@
+[2025-05-02 12:22:21,416] INFO:centralized: Starting centralized training: model=autoencoder, data=data/creditcard.csv
+[2025-05-02 12:22:21,456] INFO:centralized: Using device: cuda
+[2025-05-02 12:22:25,601] INFO:centralized: Beginning training loop
+[2025-05-02 12:22:35,804] INFO:centralized: Epoch 1/10, Loss: 4832348.2413
+[2025-05-02 12:22:45,121] INFO:centralized: Epoch 2/10, Loss: 1349.4002
+[2025-05-02 12:22:54,554] INFO:centralized: Epoch 3/10, Loss: 1780.1524
+[2025-05-02 12:23:04,116] INFO:centralized: Epoch 4/10, Loss: 1859.4688
+[2025-05-02 12:23:13,804] INFO:centralized: Epoch 5/10, Loss: 2061.7634
+[2025-05-02 12:23:23,413] INFO:centralized: Epoch 6/10, Loss: 1765.5708
+[2025-05-02 12:23:33,357] INFO:centralized: Epoch 7/10, Loss: 1644.8036
+[2025-05-02 12:23:41,602] INFO:centralized: Epoch 8/10, Loss: 2238.3730
+[2025-05-02 12:23:50,775] INFO:centralized: Epoch 9/10, Loss: 1708.9731
+[2025-05-02 12:23:59,546] INFO:centralized: Epoch 10/10, Loss: 1577.9851
+[2025-05-02 12:23:59,546] INFO:centralized: Total training time: 93.94s
+[2025-05-02 12:23:59,546] INFO:centralized: Evaluating autoencoder as anomaly detector
+[2025-05-02 12:24:02,240] INFO:centralized: Threshold set to 95th percentile of training errors: 216.7473
+[2025-05-02 12:24:02,249] INFO:centralized: Starting centralized training: model=autoencoder, data=data/creditcard.csv
+[2025-05-02 12:24:02,249] INFO:centralized: Using device: cuda
+[2025-05-02 12:24:04,321] INFO:centralized: Beginning training loop
+[2025-05-02 12:24:14,316] INFO:centralized: Epoch 1/10, Loss: 4443717.0984
+[2025-05-02 12:24:22,437] INFO:centralized: Epoch 2/10, Loss: 5955.3101
+[2025-05-02 12:24:31,729] INFO:centralized: Epoch 3/10, Loss: 5231.0321
+[2025-05-02 12:24:42,703] INFO:centralized: Epoch 4/10, Loss: 5006.6985
+[2025-05-02 12:24:53,525] INFO:centralized: Epoch 5/10, Loss: 4595.5810
+[2025-05-02 12:25:03,936] INFO:centralized: Epoch 6/10, Loss: 4657.1523
+[2025-05-02 12:25:14,942] INFO:centralized: Epoch 7/10, Loss: 4278.6012
+[2025-05-02 12:25:25,690] INFO:centralized: Epoch 8/10, Loss: 4046.1918
+[2025-05-02 12:25:36,433] INFO:centralized: Epoch 9/10, Loss: 4438.5112
+[2025-05-02 12:25:47,015] INFO:centralized: Epoch 10/10, Loss: 4053.6077
+[2025-05-02 12:25:47,015] INFO:centralized: Total training time: 102.69s
+[2025-05-02 12:25:47,015] INFO:centralized: Evaluating autoencoder as anomaly detector
+[2025-05-02 12:25:51,150] INFO:centralized: Threshold set to 95th percentile of training errors: 7705.3261

@@ -1,0 +1,112 @@
+[2025-05-02 12:29:26,590] INFO:centralized: Starting centralized training: model=autoencoder, data=data/creditcard.csv
+[2025-05-02 12:29:26,623] INFO:centralized: Using device: cuda
+[2025-05-02 12:29:29,580] INFO:centralized: Beginning training loop
+[2025-05-02 12:29:35,974] INFO:centralized: Epoch 1/50, Loss: 4832940.5816
+[2025-05-02 12:29:43,078] INFO:centralized: Epoch 2/50, Loss: 929.6325
+[2025-05-02 12:29:50,953] INFO:centralized: Epoch 3/50, Loss: 1742.8484
+[2025-05-02 12:29:58,873] INFO:centralized: Epoch 4/50, Loss: 1855.9770
+[2025-05-02 12:30:07,156] INFO:centralized: Epoch 5/50, Loss: 1580.2133
+[2025-05-02 12:30:15,341] INFO:centralized: Epoch 6/50, Loss: 1579.5532
+[2025-05-02 12:30:23,468] INFO:centralized: Epoch 7/50, Loss: 1936.8872
+[2025-05-02 12:30:31,458] INFO:centralized: Epoch 8/50, Loss: 1660.5193
+[2025-05-02 12:30:39,359] INFO:centralized: Epoch 9/50, Loss: 1601.8621
+[2025-05-02 12:30:47,531] INFO:centralized: Epoch 10/50, Loss: 1661.4026
+[2025-05-02 12:30:56,117] INFO:centralized: Epoch 11/50, Loss: 1546.1234
+[2025-05-02 12:31:04,101] INFO:centralized: Epoch 12/50, Loss: 1520.8217
+[2025-05-02 12:31:12,254] INFO:centralized: Epoch 13/50, Loss: 1495.9749
+[2025-05-02 12:31:21,194] INFO:centralized: Epoch 14/50, Loss: 1406.7467
+[2025-05-02 12:31:29,832] INFO:centralized: Epoch 15/50, Loss: 1437.5719
+[2025-05-02 12:31:39,101] INFO:centralized: Epoch 16/50, Loss: 1489.9003
+[2025-05-02 12:31:48,229] INFO:centralized: Epoch 17/50, Loss: 1360.3128
+[2025-05-02 12:31:57,193] INFO:centralized: Epoch 18/50, Loss: 1375.1571
+[2025-05-02 12:32:06,980] INFO:centralized: Epoch 19/50, Loss: 1377.2660
+[2025-05-02 12:32:16,548] INFO:centralized: Epoch 20/50, Loss: 1493.8405
+[2025-05-02 12:32:24,684] INFO:centralized: Epoch 21/50, Loss: 1197.0058
+[2025-05-02 12:32:32,102] INFO:centralized: Epoch 22/50, Loss: 1589.0344
+[2025-05-02 12:32:41,311] INFO:centralized: Epoch 23/50, Loss: 1407.9892
+[2025-05-02 12:32:50,503] INFO:centralized: Epoch 24/50, Loss: 1474.8615
+[2025-05-02 12:32:59,294] INFO:centralized: Epoch 25/50, Loss: 1166.1774
+[2025-05-02 12:33:08,583] INFO:centralized: Epoch 26/50, Loss: 1304.0338
+[2025-05-02 12:33:17,380] INFO:centralized: Epoch 27/50, Loss: 1420.8834
+[2025-05-02 12:33:25,331] INFO:centralized: Epoch 28/50, Loss: 1245.1636
+[2025-05-02 12:33:33,546] INFO:centralized: Epoch 29/50, Loss: 1119.4152
+[2025-05-02 12:33:41,526] INFO:centralized: Epoch 30/50, Loss: 1161.9565
+[2025-05-02 12:33:49,101] INFO:centralized: Epoch 31/50, Loss: 1340.6104
+[2025-05-02 12:33:57,028] INFO:centralized: Epoch 32/50, Loss: 1142.6118
+[2025-05-02 12:34:05,265] INFO:centralized: Epoch 33/50, Loss: 1040.8255
+[2025-05-02 12:34:13,431] INFO:centralized: Epoch 34/50, Loss: 1140.9780
+[2025-05-02 12:34:21,705] INFO:centralized: Epoch 35/50, Loss: 1291.5760
+[2025-05-02 12:34:29,929] INFO:centralized: Epoch 36/50, Loss: 1710.8402
+[2025-05-02 12:34:37,836] INFO:centralized: Epoch 37/50, Loss: 807.9328
+[2025-05-02 12:34:46,267] INFO:centralized: Epoch 38/50, Loss: 1129.3191
+[2025-05-02 12:34:54,504] INFO:centralized: Epoch 39/50, Loss: 1039.0419
+[2025-05-02 12:35:03,035] INFO:centralized: Epoch 40/50, Loss: 1017.1853
+[2025-05-02 12:35:11,791] INFO:centralized: Epoch 41/50, Loss: 987.0233
+[2025-05-02 12:35:20,730] INFO:centralized: Epoch 42/50, Loss: 1178.6776
+[2025-05-02 12:35:26,872] INFO:centralized: Epoch 43/50, Loss: 1160.4894
+[2025-05-02 12:35:33,002] INFO:centralized: Epoch 44/50, Loss: 943.4460
+[2025-05-02 12:35:39,237] INFO:centralized: Epoch 45/50, Loss: 1252.3406
+[2025-05-02 12:35:45,415] INFO:centralized: Epoch 46/50, Loss: 1005.0224
+[2025-05-02 12:35:51,572] INFO:centralized: Epoch 47/50, Loss: 1006.2855
+[2025-05-02 12:35:57,761] INFO:centralized: Epoch 48/50, Loss: 1092.0468
+[2025-05-02 12:36:04,448] INFO:centralized: Epoch 49/50, Loss: 936.9015
+[2025-05-02 12:36:10,558] INFO:centralized: Epoch 50/50, Loss: 1141.3930
+[2025-05-02 12:36:10,558] INFO:centralized: Total training time: 400.98s
+[2025-05-02 12:36:10,558] INFO:centralized: Evaluating autoencoder as anomaly detector
+[2025-05-02 12:36:12,953] INFO:centralized: Threshold set to 95th percentile of training errors: 1873.9500
+[2025-05-02 12:36:12,959] INFO:centralized: Starting centralized training: model=autoencoder, data=data/creditcard.csv
+[2025-05-02 12:36:12,959] INFO:centralized: Using device: cuda
+[2025-05-02 12:36:14,628] INFO:centralized: Beginning training loop
+[2025-05-02 12:36:21,828] INFO:centralized: Epoch 1/50, Loss: 5450997.3607
+[2025-05-02 12:36:28,908] INFO:centralized: Epoch 2/50, Loss: 4814.1651
+[2025-05-02 12:36:35,960] INFO:centralized: Epoch 3/50, Loss: 4221.1468
+[2025-05-02 12:36:43,021] INFO:centralized: Epoch 4/50, Loss: 4066.9987
+[2025-05-02 12:36:50,128] INFO:centralized: Epoch 5/50, Loss: 3873.7197
+[2025-05-02 12:36:57,271] INFO:centralized: Epoch 6/50, Loss: 4239.9724
+[2025-05-02 12:37:04,421] INFO:centralized: Epoch 7/50, Loss: 3765.9752
+[2025-05-02 12:37:11,514] INFO:centralized: Epoch 8/50, Loss: 3480.4250
+[2025-05-02 12:37:18,626] INFO:centralized: Epoch 9/50, Loss: 3765.3533
+[2025-05-02 12:37:25,741] INFO:centralized: Epoch 10/50, Loss: 3906.9331
+[2025-05-02 12:37:32,684] INFO:centralized: Epoch 11/50, Loss: 3220.1420
+[2025-05-02 12:37:39,843] INFO:centralized: Epoch 12/50, Loss: 3484.1566
+[2025-05-02 12:37:46,954] INFO:centralized: Epoch 13/50, Loss: 3328.1561
+[2025-05-02 12:37:54,103] INFO:centralized: Epoch 14/50, Loss: 3273.3278
+[2025-05-02 12:38:01,327] INFO:centralized: Epoch 15/50, Loss: 3453.7369
+[2025-05-02 12:38:08,418] INFO:centralized: Epoch 16/50, Loss: 3114.4064
+[2025-05-02 12:38:15,568] INFO:centralized: Epoch 17/50, Loss: 3324.5854
+[2025-05-02 12:38:23,171] INFO:centralized: Epoch 18/50, Loss: 2764.9214
+[2025-05-02 12:38:30,608] INFO:centralized: Epoch 19/50, Loss: 3212.0089
+[2025-05-02 12:38:37,469] INFO:centralized: Epoch 20/50, Loss: 2905.1590
+[2025-05-02 12:38:44,519] INFO:centralized: Epoch 21/50, Loss: 2928.0342
+[2025-05-02 12:38:51,525] INFO:centralized: Epoch 22/50, Loss: 3220.3262
+[2025-05-02 12:38:58,871] INFO:centralized: Epoch 23/50, Loss: 2917.5746
+[2025-05-02 12:39:05,625] INFO:centralized: Epoch 24/50, Loss: 3009.7849
+[2025-05-02 12:39:12,838] INFO:centralized: Epoch 25/50, Loss: 3173.3780
+[2025-05-02 12:39:20,328] INFO:centralized: Epoch 26/50, Loss: 2815.1637
+[2025-05-02 12:39:27,890] INFO:centralized: Epoch 27/50, Loss: 2644.5446
+[2025-05-02 12:39:35,239] INFO:centralized: Epoch 28/50, Loss: 2973.2353
+[2025-05-02 12:39:42,688] INFO:centralized: Epoch 29/50, Loss: 2661.0525
+[2025-05-02 12:39:50,207] INFO:centralized: Epoch 30/50, Loss: 2684.2892
+[2025-05-02 12:39:57,351] INFO:centralized: Epoch 31/50, Loss: 2850.3826
+[2025-05-02 12:40:04,734] INFO:centralized: Epoch 32/50, Loss: 2684.0015
+[2025-05-02 12:40:12,230] INFO:centralized: Epoch 33/50, Loss: 2520.3926
+[2025-05-02 12:40:19,325] INFO:centralized: Epoch 34/50, Loss: 2588.3651
+[2025-05-02 12:40:26,891] INFO:centralized: Epoch 35/50, Loss: 2536.8600
+[2025-05-02 12:40:34,335] INFO:centralized: Epoch 36/50, Loss: 2517.2527
+[2025-05-02 12:40:41,442] INFO:centralized: Epoch 37/50, Loss: 2629.1085
+[2025-05-02 12:40:49,027] INFO:centralized: Epoch 38/50, Loss: 2424.9725
+[2025-05-02 12:40:56,591] INFO:centralized: Epoch 39/50, Loss: 2316.3717
+[2025-05-02 12:41:04,590] INFO:centralized: Epoch 40/50, Loss: 2396.8412
+[2025-05-02 12:41:13,739] INFO:centralized: Epoch 41/50, Loss: 2209.6831
+[2025-05-02 12:41:22,264] INFO:centralized: Epoch 42/50, Loss: 2542.6769
+[2025-05-02 12:41:30,940] INFO:centralized: Epoch 43/50, Loss: 2267.6299
+[2025-05-02 12:41:39,131] INFO:centralized: Epoch 44/50, Loss: 2084.7835
+[2025-05-02 12:41:47,733] INFO:centralized: Epoch 45/50, Loss: 2283.2493
+[2025-05-02 12:41:56,041] INFO:centralized: Epoch 46/50, Loss: 2258.1215
+[2025-05-02 12:42:04,609] INFO:centralized: Epoch 47/50, Loss: 2163.4040
+[2025-05-02 12:42:12,422] INFO:centralized: Epoch 48/50, Loss: 2088.9679
+[2025-05-02 12:42:21,158] INFO:centralized: Epoch 49/50, Loss: 2263.9668
+[2025-05-02 12:42:29,480] INFO:centralized: Epoch 50/50, Loss: 2076.1452
+[2025-05-02 12:42:29,480] INFO:centralized: Total training time: 374.85s
+[2025-05-02 12:42:29,480] INFO:centralized: Evaluating autoencoder as anomaly detector
+[2025-05-02 12:42:32,258] INFO:centralized: Threshold set to 95th percentile of training errors: 3382.2422

@@ -1,0 +1,25 @@
+[2025-05-02 13:06:27,234] INFO:centralized: Starting centralized training: model=cnn, data=data/creditcard.csv
+[2025-05-02 13:06:27,297] INFO:centralized: Using device: cuda
+[2025-05-02 13:06:31,855] INFO:centralized: Beginning training loop
+[2025-05-02 13:06:41,557] INFO:centralized: Epoch 1/10, Loss: 1.1865
+[2025-05-02 13:06:47,886] INFO:centralized: Epoch 2/10, Loss: 1.1004
+[2025-05-02 13:06:53,962] INFO:centralized: Epoch 3/10, Loss: 1.0745
+[2025-05-02 13:07:00,442] INFO:centralized: Epoch 4/10, Loss: 1.0640
+[2025-05-02 13:07:06,487] INFO:centralized: Epoch 5/10, Loss: 1.0590
+[2025-05-02 13:07:12,916] INFO:centralized: Epoch 6/10, Loss: 1.0621
+[2025-05-02 13:07:19,174] INFO:centralized: Epoch 7/10, Loss: 1.0596
+[2025-05-02 13:07:25,591] INFO:centralized: Epoch 8/10, Loss: 1.0584
+[2025-05-02 13:07:32,009] INFO:centralized: Epoch 9/10, Loss: 1.0508
+[2025-05-02 13:07:38,243] INFO:centralized: Epoch 10/10, Loss: 1.0565
+[2025-05-02 13:07:38,243] INFO:centralized: Total training time: 66.39s
+[2025-05-02 13:07:38,243] INFO:centralized: Evaluating model
+[2025-05-02 13:07:38,867] INFO:centralized: Total inference time: 0.62s
+[2025-05-02 13:07:38,956] INFO:centralized: Best F1 threshold found: 1.0000
+[2025-05-02 13:07:39,645] INFO:centralized: Metrics (with timings) saved to metrics_20250502-130739.json
+Evaluation Metrics:
+  accuracy: 0.9972
+  precision: 0.2333
+  recall: 0.2857
+  f1_score: 0.2569
+  train_time: 66.3879
+  inference_time: 0.6236

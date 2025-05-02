@@ -1,0 +1,47 @@
+[2025-05-02 15:03:32,289] INFO:centralized: Starting centralized training: model=transformer, data=data/creditcard.csv
+[2025-05-02 15:03:32,323] INFO:centralized: Using device: cuda
+/scratch/kaifalam/anaconda3/envs/ml_env/lib/python3.8/site-packages/torch/nn/modules/transformer.py:306: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[2025-05-02 15:03:51,350] INFO:centralized: Beginning training loop
+[2025-05-02 15:04:08,924] INFO:centralized: Epoch 1/30, Loss: 0.0471
+[2025-05-02 15:04:26,604] INFO:centralized: Epoch 2/30, Loss: 0.0390
+[2025-05-02 15:04:44,054] INFO:centralized: Epoch 3/30, Loss: 0.0373
+[2025-05-02 15:05:01,572] INFO:centralized: Epoch 4/30, Loss: 0.0362
+[2025-05-02 15:05:19,002] INFO:centralized: Epoch 5/30, Loss: 0.0396
+[2025-05-02 15:05:36,260] INFO:centralized: Epoch 6/30, Loss: 0.0371
+[2025-05-02 15:05:53,364] INFO:centralized: Epoch 7/30, Loss: 0.0320
+[2025-05-02 15:06:10,380] INFO:centralized: Epoch 8/30, Loss: 0.0310
+[2025-05-02 15:06:27,057] INFO:centralized: Epoch 9/30, Loss: 0.0307
+[2025-05-02 15:06:44,476] INFO:centralized: Epoch 10/30, Loss: 0.0301
+[2025-05-02 15:07:01,256] INFO:centralized: Epoch 11/30, Loss: 0.0302
+[2025-05-02 15:07:17,974] INFO:centralized: Epoch 12/30, Loss: 0.0298
+[2025-05-02 15:07:35,742] INFO:centralized: Epoch 13/30, Loss: 0.0292
+[2025-05-02 15:07:53,345] INFO:centralized: Epoch 14/30, Loss: 0.0289
+[2025-05-02 15:08:10,584] INFO:centralized: Epoch 15/30, Loss: 0.0274
+[2025-05-02 15:08:27,761] INFO:centralized: Epoch 16/30, Loss: 0.0291
+[2025-05-02 15:08:45,598] INFO:centralized: Epoch 17/30, Loss: 0.0283
+[2025-05-02 15:09:03,303] INFO:centralized: Epoch 18/30, Loss: 0.0317
+[2025-05-02 15:09:20,835] INFO:centralized: Epoch 19/30, Loss: 0.0290
+[2025-05-02 15:09:38,519] INFO:centralized: Epoch 20/30, Loss: 0.0273
+[2025-05-02 15:09:56,345] INFO:centralized: Epoch 21/30, Loss: 0.0279
+[2025-05-02 15:10:13,464] INFO:centralized: Epoch 22/30, Loss: 0.0269
+[2025-05-02 15:10:31,078] INFO:centralized: Epoch 23/30, Loss: 0.0265
+[2025-05-02 15:10:48,909] INFO:centralized: Epoch 24/30, Loss: 0.0282
+[2025-05-02 15:11:05,710] INFO:centralized: Epoch 25/30, Loss: 0.0266
+[2025-05-02 15:11:22,600] INFO:centralized: Epoch 26/30, Loss: 0.0269
+[2025-05-02 15:11:39,230] INFO:centralized: Epoch 27/30, Loss: 0.0276
+[2025-05-02 15:11:56,009] INFO:centralized: Epoch 28/30, Loss: 0.0273
+[2025-05-02 15:12:13,033] INFO:centralized: Epoch 29/30, Loss: 0.0269
+[2025-05-02 15:12:30,354] INFO:centralized: Epoch 30/30, Loss: 0.0262
+[2025-05-02 15:12:30,354] INFO:centralized: Total training time: 519.00s
+[2025-05-02 15:12:30,354] INFO:centralized: Evaluating model
+[2025-05-02 15:12:32,008] INFO:centralized: Total inference time: 1.65s
+[2025-05-02 15:12:32,998] INFO:centralized: Best F1 threshold found: 0.8191
+[2025-05-02 15:12:33,884] INFO:centralized: Metrics (with timings) saved to metrics_20250502-151233.json
+Evaluation Metrics:
+  accuracy: 0.9993
+  precision: 0.7767
+  recall: 0.8163
+  f1_score: 0.7960
+  train_time: 519.0036
+  inference_time: 1.6542

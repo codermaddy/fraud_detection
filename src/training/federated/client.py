@@ -11,6 +11,9 @@ from .federated import (
 )
 from torch.utils.data import DataLoader, TensorDataset
 from models.autoencoder import Autoencoder
+import logging
+logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
+log = logging.getLogger()
 
 class FlowerClient(fl.client.NumPyClient):
     def __init__(self, model, train_loader, test_loader, device):
@@ -24,6 +27,8 @@ class FlowerClient(fl.client.NumPyClient):
 
     def fit(self, parameters, config):
         # 1) Load global parameters
+        print("[CLIENT] Starting local training...")
+        start_time = time.perf_counter()
         set_parameters(self.model, parameters)
         self.model.train()
 
@@ -44,14 +49,19 @@ class FlowerClient(fl.client.NumPyClient):
             loss.backward()
             optimizer.step()
         train_time = time.perf_counter() - start_time
-
+        
+        print(f"[CLIENT] Training completed in {train_time:.2f}s.")
+        print(f"[CLIENT] Sending updated weights to server.")
         # 3) Return updated weights, number of examples, and metrics
         return get_parameters(self.model), len(self.train_loader.dataset), {
             "train_time": float(train_time)
         }
+        
 
     def evaluate(self, parameters, config):
         # 1) Load global parameters
+        print("[CLIENT] Starting evaluation...")
+        inf_start = time.perf_counter()
         set_parameters(self.model, parameters)
         self.model.eval()
 
@@ -89,6 +99,8 @@ class FlowerClient(fl.client.NumPyClient):
                 "inference_time": float(inference_time),
                 "threshold": float(threshold),
             })
+            print(f"[CLIENT] Evaluation done in {inference_time:.2f}s.")
+            print(f"[CLIENT] Metrics: {metrics}")
             # Flower expects: loss, num_examples, metrics_dict
             return 0.0, len(self.test_loader.dataset), metrics
 
@@ -124,6 +136,9 @@ def run_client(
     Start a Flower federated client.
     """
     # Device
+    print(f"[CLIENT {client_id}] Starting with model: {model_name}")
+    print(f"[CLIENT {client_id}] Connecting to server at: {server_address}")
+    print(f"[CLIENT {client_id}] Loading data partition...")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # Load this client's slice
@@ -135,7 +150,10 @@ def run_client(
     train_ds = TensorDataset(X, y)
     train_loader = DataLoader(train_ds, batch_size=32, shuffle=True)
     test_loader  = DataLoader(train_ds, batch_size=32, shuffle=False)
-
+    
+    print(f"[CLIENT {client_id}] Data shape: X={X.shape}, y={y.shape}")
+    print(f"[CLIENT {client_id}] Training and test loaders prepared.")
+    
     # Instantiate model
     input_dim = X.shape[1]
     model = get_model(model_name, input_dim)
@@ -146,6 +164,7 @@ def run_client(
         server_address=server_address,
         client=client,
     )
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Federated Learning Client")

@@ -5,7 +5,7 @@ import argparse
 # Ensure src is in path
 sys.path.append(os.path.dirname(__file__))
 
-from training import centralized, distributed
+from training import centralized_naive, distributed, centralized_weighted, centralized_weighted_1, centralized_focal, distributed_weighted
 from training.federated import server as fed_server, client as fed_client
 
 def main():
@@ -19,6 +19,7 @@ def main():
     p_central.add_argument("--epochs", type=int, default=10)
     p_central.add_argument("--lr", type=float, default=1e-3)
     p_central.add_argument("--batch_size", type=int, default=64)
+    p_central.add_argument("--mode", choices=["naive", "weighted", "weighted_1", "focal"], default='naive')
 
     # Distributed
     p_dist = subparsers.add_parser("train-distributed")
@@ -28,13 +29,15 @@ def main():
     p_dist.add_argument("--lr", type=float, default=1e-3)
     p_dist.add_argument("--batch_size", type=int, default=64)
     p_dist.add_argument("--world_size", type=int, default=2)
-
+    p_dist.add_argument("--mode", choices=["naive", "weighted", "weighted_1", "focal"], default='naive')
+    
     # Federated
     p_fed = subparsers.add_parser("train-federated")
     p_fed.add_argument("--model", choices=["dnn", "autoencoder", "cnn", "transformer"], default="dnn")
     group = p_fed.add_mutually_exclusive_group(required=True)
     group.add_argument("--server", action="store_true")
     group.add_argument("--client", action="store_true")
+    
     # Common federated args
     p_fed.add_argument("--rounds", type=int, default=1)
     p_fed.add_argument("--min_clients", type=int, default=2)
@@ -46,11 +49,27 @@ def main():
     args = parser.parse_args()
 
     if args.command == "train-centralized":
-        centralized.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
-                           lr=args.lr, batch_size=args.batch_size)
+        if args.mode == 'naive' :
+            centralized_naive.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
+                            lr=args.lr, batch_size=args.batch_size)
+        if args.mode == 'weighted' :
+            centralized_weighted.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
+                            lr=args.lr, batch_size=args.batch_size)
+        elif args.mode == 'weighted_1' :
+            centralized_weighted_1.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
+                            lr=args.lr, batch_size=args.batch_size)
+        else :
+            centralized_focal.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
+                            lr=args.lr, batch_size=args.batch_size)
+            
     elif args.command == "train-distributed":
-        distributed.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
-                          lr=args.lr, batch_size=args.batch_size, world_size=args.world_size)
+        if args.mode =='naive' :
+            distributed.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
+                            lr=args.lr, batch_size=args.batch_size, world_size=args.world_size)
+        else :
+            distributed_weighted.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
+                            lr=args.lr, batch_size=args.batch_size, world_size=args.world_size)
+            
     elif args.command == "train-federated":
         if args.server:
             fed_server.run_server(model_name=args.model, num_rounds=args.rounds,

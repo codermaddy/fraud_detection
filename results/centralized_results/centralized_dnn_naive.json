@@ -1,0 +1,8 @@
+{
+    "accuracy": 0.9982795547909132,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1_score": 0.0,
+    "train_time": 50.58796961099142,
+    "inference_time": 0.5272924129967578
+}

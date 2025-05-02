@@ -20,4 +20,5 @@ class TransformerClassifier(nn.Module):
         emb = emb.unsqueeze(0)                   # (1, batch, d_model)
         out = self.transformer(emb)              # (1, batch, d_model)
         out = out.squeeze(0)                     # (batch, d_model)
-        return out @ self.classifier.weight.t() + self.classifier.bias  # (batch,)
+        return self.classifier(out).squeeze(1)  # (batch,)
+        # return out @ self.classifier.weight.t() + self.classifier.bias  # (batch,)

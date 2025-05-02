@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader, TensorDataset
+from sklearn.preprocessing import StandardScaler
 import torch
 
 def load_data(path):
@@ -11,12 +12,26 @@ def load_data(path):
     """
     return pd.read_csv(path)
 
-def preprocess_data(df):
+def preprocess_data(df, target_col='Class'):
     """
-    Placeholder for data preprocessing (e.g., scaling, encoding). 
-    Currently drops rows with NaN values.
+    Preprocess the DataFrame:
+    - Drop NaNs
+    - Normalize features to zero mean and unit variance
     """
-    return df.dropna()
+    df = df.dropna()
+    
+    features = df.drop(columns=[target_col])
+    labels = df[target_col].values
+
+    # Normalize features
+    scaler = StandardScaler()
+    features_scaled = scaler.fit_transform(features)
+
+    # Combine back into DataFrame
+    df_scaled = pd.DataFrame(features_scaled, columns=features.columns)
+    df_scaled[target_col] = labels
+
+    return df_scaled
 
 def split_data(df, target_col='Class', test_size=0.2, random_state=42):
     """

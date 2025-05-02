@@ -1,0 +1,10 @@
+with pos_weight = torch.tensor(class_weights[1] / class_weights[0]).to(device)
+
+{
+    "accuracy": 0.0022646676731856324,
+    "precision": 0.0016863702636710173,
+    "recall": 0.9795918367346939,
+    "f1_score": 0.0033669443226654974,
+    "train_time": 50.598841588012874,
+    "inference_time": 0.4741624540183693
+}

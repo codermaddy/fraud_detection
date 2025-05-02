@@ -3,17 +3,42 @@ import flwr as fl
 from .federated import get_model, get_parameters
 from flwr.common import ndarrays_to_parameters
 from flwr.server.strategy import FedAvg
+import logging
+logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
+log = logging.getLogger()
+
+# def run_server(model_name: str, num_rounds: int, min_clients: int, server_address: str) -> None:
+#     """
+#     Start the Flower federated server.
+#     """
+#     # Create a dummy model (input_dim is a placeholder; clients will load real shapes)
+#     model = get_model(model_name, input_dim=1)
+#     # Convert initial model parameters to Flower format
+#     initial_params = ndarrays_to_parameters(get_parameters(model))
+
+#     # Define FedAvg strategy
+#     strategy = FedAvg(
+#         initial_parameters=initial_params,
+#         fraction_fit=1.0,
+#         min_fit_clients=min_clients,
+#         min_available_clients=min_clients,
+#     )
+
+#     # Start Flower server
+#     fl.server.start_server(
+#         server_address=server_address,
+#         config=fl.server.ServerConfig(num_rounds=num_rounds),
+#         strategy=strategy,
+#     )
 
 def run_server(model_name: str, num_rounds: int, min_clients: int, server_address: str) -> None:
-    """
-    Start the Flower federated server.
-    """
-    # Create a dummy model (input_dim is a placeholder; clients will load real shapes)
+    print(f"[SERVER] Starting server with model: {model_name}")
+    print(f"[SERVER] Listening on: {server_address}")
+    print(f"[SERVER] Required clients: {min_clients}, Total Rounds: {num_rounds}")
+
     model = get_model(model_name, input_dim=1)
-    # Convert initial model parameters to Flower format
     initial_params = ndarrays_to_parameters(get_parameters(model))
 
-    # Define FedAvg strategy
     strategy = FedAvg(
         initial_parameters=initial_params,
         fraction_fit=1.0,
@@ -21,12 +46,16 @@ def run_server(model_name: str, num_rounds: int, min_clients: int, server_addres
         min_available_clients=min_clients,
     )
 
-    # Start Flower server
+    print("[SERVER] FedAvg strategy initialized.")
+    print("[SERVER] Waiting for clients to connect...")
+
     fl.server.start_server(
         server_address=server_address,
         config=fl.server.ServerConfig(num_rounds=num_rounds),
         strategy=strategy,
     )
+
+    print("[SERVER] Training finished.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Federated Learning Server")

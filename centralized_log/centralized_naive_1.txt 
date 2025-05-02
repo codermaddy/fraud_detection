@@ -1,0 +1,24 @@
+[2025-05-02 11:20:18,364] INFO:centralized: Starting centralized training: model=dnn, data=data/creditcard.csv
+[2025-05-02 11:20:18,397] INFO:centralized: Using device: cuda
+[2025-05-02 11:20:21,597] INFO:centralized: Beginning training loop
+[2025-05-02 11:20:26,420] INFO:centralized: Epoch 1/10, Loss: 1.9655
+[2025-05-02 11:20:31,204] INFO:centralized: Epoch 2/10, Loss: 0.4398
+[2025-05-02 11:20:36,105] INFO:centralized: Epoch 3/10, Loss: 0.0736
+[2025-05-02 11:20:40,596] INFO:centralized: Epoch 4/10, Loss: 0.0186
+[2025-05-02 11:20:45,801] INFO:centralized: Epoch 5/10, Loss: 0.0155
+[2025-05-02 11:20:51,100] INFO:centralized: Epoch 6/10, Loss: 0.0686
+[2025-05-02 11:20:56,863] INFO:centralized: Epoch 7/10, Loss: 0.0144
+[2025-05-02 11:21:01,616] INFO:centralized: Epoch 8/10, Loss: 0.0131
+[2025-05-02 11:21:06,622] INFO:centralized: Epoch 9/10, Loss: 0.0142
+[2025-05-02 11:21:11,330] INFO:centralized: Epoch 10/10, Loss: 0.0127
+[2025-05-02 11:21:11,330] INFO:centralized: Total training time: 49.73s
+[2025-05-02 11:21:11,330] INFO:centralized: Evaluating model
+[2025-05-02 11:21:11,919] INFO:centralized: Total inference time: 0.59s
+[2025-05-02 11:21:12,064] INFO:centralized: Metrics (with timings) saved to metrics_20250502-112112.json
+Evaluation Metrics:
+  accuracy: 0.9983
+  precision: 0.0000
+  recall: 0.0000
+  f1_score: 0.0000
+  train_time: 49.7324
+  inference_time: 0.5892

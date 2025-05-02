@@ -1,0 +1,81 @@
+[2025-05-02 15:22:00,756] INFO:distributed: MASTER_ADDR=127.0.0.1, MASTER_PORT=29500
+[2025-05-02 15:22:00,756] INFO:distributed: Spawning 4 processes for DDP
+[2025-05-02 15:22:04,347] INFO:ddp_rank1: Rank 1/4 on backend 'nccl'
+[2025-05-02 15:22:04,347] INFO:ddp_rank2: Rank 2/4 on backend 'nccl'
+[2025-05-02 15:22:04,347] INFO:ddp_rank1: Using device: cuda:1
+[2025-05-02 15:22:04,347] INFO:ddp_rank2: Using device: cuda:2
+[2025-05-02 15:22:04,373] INFO:ddp_rank3: Rank 3/4 on backend 'nccl'
+[2025-05-02 15:22:04,374] INFO:ddp_rank3: Using device: cuda:3
+[2025-05-02 15:22:04,380] INFO:ddp_rank0: Rank 0/4 on backend 'nccl'
+[2025-05-02 15:22:04,380] INFO:ddp_rank0: Using device: cuda:0
+/scratch/kaifalam/anaconda3/envs/ml_env/lib/python3.8/site-packages/torch/nn/modules/transformer.py:306: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[2025-05-02 15:22:15,826] INFO:ddp_rank3: Starting training
+/scratch/kaifalam/anaconda3/envs/ml_env/lib/python3.8/site-packages/torch/nn/modules/transformer.py:306: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[2025-05-02 15:22:15,826] INFO:ddp_rank2: Starting training
+/scratch/kaifalam/anaconda3/envs/ml_env/lib/python3.8/site-packages/torch/nn/modules/transformer.py:306: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[2025-05-02 15:22:15,826] INFO:ddp_rank1: Starting training
+/scratch/kaifalam/anaconda3/envs/ml_env/lib/python3.8/site-packages/torch/nn/modules/transformer.py:306: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[2025-05-02 15:22:15,826] INFO:ddp_rank0: Starting training
+[2025-05-02 15:22:36,994] INFO:ddp_rank1: Epoch 1/10 — loss: 0.0028
+[2025-05-02 15:22:36,994] INFO:ddp_rank0: Epoch 1/10 — loss: 0.0028
+[2025-05-02 15:22:36,994] INFO:ddp_rank3: Epoch 1/10 — loss: 0.0025
+[2025-05-02 15:22:36,994] INFO:ddp_rank2: Epoch 1/10 — loss: 0.0026
+[2025-05-02 15:22:57,714] INFO:ddp_rank0: Epoch 2/10 — loss: 0.0008
+[2025-05-02 15:22:57,716] INFO:ddp_rank1: Epoch 2/10 — loss: 0.0009
+[2025-05-02 15:22:57,716] INFO:ddp_rank2: Epoch 2/10 — loss: 0.0009
+[2025-05-02 15:22:57,716] INFO:ddp_rank3: Epoch 2/10 — loss: 0.0009
+[2025-05-02 15:23:18,804] INFO:ddp_rank2: Epoch 3/10 — loss: 0.0009
+[2025-05-02 15:23:18,806] INFO:ddp_rank1: Epoch 3/10 — loss: 0.0008
+[2025-05-02 15:23:18,806] INFO:ddp_rank0: Epoch 3/10 — loss: 0.0009
+[2025-05-02 15:23:18,806] INFO:ddp_rank3: Epoch 3/10 — loss: 0.0010
+[2025-05-02 15:23:39,431] INFO:ddp_rank2: Epoch 4/10 — loss: 0.0011
+[2025-05-02 15:23:39,435] INFO:ddp_rank1: Epoch 4/10 — loss: 0.0007
+[2025-05-02 15:23:39,435] INFO:ddp_rank3: Epoch 4/10 — loss: 0.0008
+[2025-05-02 15:23:39,443] INFO:ddp_rank0: Epoch 4/10 — loss: 0.0007
+[2025-05-02 15:23:59,735] INFO:ddp_rank1: Epoch 5/10 — loss: 0.0009
+[2025-05-02 15:23:59,737] INFO:ddp_rank0: Epoch 5/10 — loss: 0.0007
+[2025-05-02 15:23:59,737] INFO:ddp_rank2: Epoch 5/10 — loss: 0.0010
+[2025-05-02 15:23:59,749] INFO:ddp_rank3: Epoch 5/10 — loss: 0.0006
+[2025-05-02 15:24:17,235] INFO:ddp_rank1: Epoch 6/10 — loss: 0.0007
+[2025-05-02 15:24:17,235] INFO:ddp_rank0: Epoch 6/10 — loss: 0.0009
+[2025-05-02 15:24:17,236] INFO:ddp_rank2: Epoch 6/10 — loss: 0.0008
+[2025-05-02 15:24:17,238] INFO:ddp_rank3: Epoch 6/10 — loss: 0.0008
+[2025-05-02 15:24:38,162] INFO:ddp_rank1: Epoch 7/10 — loss: 0.0006
+[2025-05-02 15:24:38,166] INFO:ddp_rank2: Epoch 7/10 — loss: 0.0008
+[2025-05-02 15:24:38,167] INFO:ddp_rank0: Epoch 7/10 — loss: 0.0009
+[2025-05-02 15:24:38,170] INFO:ddp_rank3: Epoch 7/10 — loss: 0.0009
+[2025-05-02 15:24:58,135] INFO:ddp_rank3: Epoch 8/10 — loss: 0.0008
+[2025-05-02 15:24:58,135] INFO:ddp_rank0: Epoch 8/10 — loss: 0.0008
+[2025-05-02 15:24:58,135] INFO:ddp_rank2: Epoch 8/10 — loss: 0.0006
+[2025-05-02 15:24:58,138] INFO:ddp_rank1: Epoch 8/10 — loss: 0.0008
+[2025-05-02 15:25:15,312] INFO:ddp_rank3: Epoch 9/10 — loss: 0.0008
+[2025-05-02 15:25:15,312] INFO:ddp_rank0: Epoch 9/10 — loss: 0.0011
+[2025-05-02 15:25:15,312] INFO:ddp_rank2: Epoch 9/10 — loss: 0.0007
+[2025-05-02 15:25:15,312] INFO:ddp_rank1: Epoch 9/10 — loss: 0.0007
+[2025-05-02 15:25:30,478] INFO:ddp_rank0: Epoch 10/10 — loss: 0.0007
+[2025-05-02 15:25:30,478] INFO:ddp_rank0: Total training time (rank 0): 194.65s
+[2025-05-02 15:25:30,478] INFO:ddp_rank0: Evaluating classifier (rank 0)
+[2025-05-02 15:25:30,478] INFO:ddp_rank1: Epoch 10/10 — loss: 0.0007
+[2025-05-02 15:25:30,478] INFO:ddp_rank3: Epoch 10/10 — loss: 0.0007
+[2025-05-02 15:25:30,478] INFO:ddp_rank2: Epoch 10/10 — loss: 0.0009
+[2025-05-02 15:25:30,478] INFO:ddp_rank1: Total training time (rank 1): 194.65s
+[2025-05-02 15:25:30,478] INFO:ddp_rank3: Total training time (rank 3): 194.65s
+[2025-05-02 15:25:30,478] INFO:ddp_rank2: Total training time (rank 2): 194.65s
+[2025-05-02 15:25:30,478] INFO:ddp_rank1: Rank 1 done
+[2025-05-02 15:25:30,478] INFO:ddp_rank3: Rank 3 done
+[2025-05-02 15:25:30,478] INFO:ddp_rank2: Rank 2 done
+[2025-05-02 15:25:32,095] INFO:ddp_rank0: Inference time: 1.62s
+[2025-05-02 15:25:32,704] INFO:ddp_rank0: Classifier metrics saved to metrics_20250502-152532.json
+[2025-05-02 15:25:32,704] INFO:ddp_rank0: Rank 0 done
+Evaluation Metrics:
+  accuracy: 0.9993
+  precision: 0.7822
+  recall: 0.8061
+  f1_score: 0.7940
+  train_time: 194.6513
+  inference_time: 1.6171
+[2025-05-02 15:27:24,018] INFO:distributed: Distributed training complete
