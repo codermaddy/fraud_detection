@@ -9,6 +9,8 @@ from torch.utils.data import DataLoader, DistributedSampler
 from utils.data_utils import load_data, preprocess_data, split_data, get_dataloaders
 from models.dnn import DNN
 from models.autoencoder import Autoencoder
+from models.cnn import CNNClassifier
+from models.transformer import TransformerClassifier
 from evaluation.metrics import compute_all_metrics
 from evaluation.report import print_metrics, save_metrics
 from utils.logging import get_logger
@@ -42,8 +44,12 @@ def ddp_train(rank, world_size, model_name, data_path, epochs, lr, batch_size):
     input_dim = X_train.shape[1]
     if model_name == "dnn":
         model = DNN(input_dim); criterion = nn.BCEWithLogitsLoss()
-    else:
+    elif model_name == "autoencoder":
         model = Autoencoder(input_dim); criterion = nn.MSELoss()
+    elif model_name == 'cnn':
+        return CNNClassifier(input_dim)
+    elif model_name == 'transformer':
+        return TransformerClassifier(input_dim)
     model.to(device)
     model = nn.parallel.DistributedDataParallel(
         model, device_ids=[rank] if backend=="nccl" else None

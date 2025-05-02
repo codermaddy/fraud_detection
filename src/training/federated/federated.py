@@ -3,6 +3,8 @@ import numpy as np
 import torch
 from models.dnn import DNN
 from models.autoencoder import Autoencoder
+from models.cnn import CNNClassifier
+from models.transformer import TransformerClassifier
 from utils.data_utils import load_data, preprocess_data
 
 def get_model(model_name, input_dim):
@@ -13,6 +15,10 @@ def get_model(model_name, input_dim):
         return DNN(input_dim)
     elif model_name == 'autoencoder':
         return Autoencoder(input_dim)
+    elif model_name == 'cnn':
+        return CNNClassifier(input_dim)
+    elif model_name == 'transformer':
+        return TransformerClassifier(input_dim)
     else:
         raise ValueError("Unsupported model type.")
 

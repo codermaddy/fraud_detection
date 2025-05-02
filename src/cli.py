@@ -14,7 +14,7 @@ def main():
 
     # Centralized
     p_central = subparsers.add_parser("train-centralized")
-    p_central.add_argument("--model", choices=["dnn", "autoencoder"], default="dnn")
+    p_central.add_argument("--model", choices=["dnn", "autoencoder", "cnn", "transformer"], default="dnn")
     p_central.add_argument("--data", default="data.csv")
     p_central.add_argument("--epochs", type=int, default=10)
     p_central.add_argument("--lr", type=float, default=1e-3)
@@ -22,7 +22,7 @@ def main():
 
     # Distributed
     p_dist = subparsers.add_parser("train-distributed")
-    p_dist.add_argument("--model", choices=["dnn", "autoencoder"], default="dnn")
+    p_dist.add_argument("--model", choices=["dnn", "autoencoder", "cnn", "transformer"], default="dnn")
     p_dist.add_argument("--data", default="data.csv")
     p_dist.add_argument("--epochs", type=int, default=10)
     p_dist.add_argument("--lr", type=float, default=1e-3)
@@ -31,7 +31,7 @@ def main():
 
     # Federated
     p_fed = subparsers.add_parser("train-federated")
-    p_fed.add_argument("--model", choices=["dnn", "autoencoder"], default="dnn")
+    p_fed.add_argument("--model", choices=["dnn", "autoencoder", "cnn", "transformer"], default="dnn")
     group = p_fed.add_mutually_exclusive_group(required=True)
     group.add_argument("--server", action="store_true")
     group.add_argument("--client", action="store_true")
