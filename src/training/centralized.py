@@ -6,6 +6,8 @@ from torch.utils.data import DataLoader
 from utils.data_utils import load_data, preprocess_data, split_data, get_dataloaders
 from models.dnn import DNN
 from models.autoencoder import Autoencoder
+from models.cnn import CNNClassifier
+from models.transformer import TransformerClassifier
 from evaluation.metrics import compute_all_metrics
 from evaluation.report import print_metrics, save_metrics
 from utils.logging import get_logger
@@ -38,6 +40,10 @@ def train(model_name='dnn', data_path='data.csv', epochs=10, lr=1e-3, batch_size
     elif model_name == 'autoencoder':
         model = Autoencoder(input_dim)
         criterion = nn.MSELoss()
+    elif model_name == 'cnn':
+        return CNNClassifier(input_dim)
+    elif model_name == 'transformer':
+        return TransformerClassifier(input_dim)
     else:
         raise ValueError("Unsupported model type. Choose 'dnn' or 'autoencoder'.")
     model.to(device)
