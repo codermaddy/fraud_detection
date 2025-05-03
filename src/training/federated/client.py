@@ -7,8 +7,9 @@ from .federated import (
     get_model,
     set_parameters,
     get_parameters,
-    load_data_for_client,
+    load_data_for_client
 )
+from utils.data_utils import apply_smote
 from torch.utils.data import DataLoader, TensorDataset
 from models.autoencoder import Autoencoder
 
@@ -119,6 +120,8 @@ def run_client(
     model_name: str,
     server_address: str,
     data_path: str,
+    use_smote: bool,
+    smote_strategy: str
 ) -> None:
     """
     Start a Flower federated client.
@@ -130,6 +133,12 @@ def run_client(
     X, y = load_data_for_client(data_path, client_id, num_clients)
     X = torch.tensor(X, dtype=torch.float32)
     y = torch.tensor(y, dtype=torch.float32)
+
+    if use_smote:
+        X_np, y_np = X.numpy(), y.numpy().astype(int)
+        X_res, y_res = apply_smote(X_np, y_np, sampling_strategy=smote_strategy)
+        X = torch.tensor(X_res, dtype=torch.float32)
+        y = torch.tensor(y_res, dtype=torch.float32)
 
     # Create DataLoaders
     train_ds = TensorDataset(X, y)
@@ -158,6 +167,8 @@ if __name__ == "__main__":
                         help="Flower server address (e.g., localhost:8080)")
     parser.add_argument("--data", default="data.csv",
                         help="Path to shared CSV dataset")
+    parser.add_argument("--use_smote", action="store_true", help="Apply SMOTE oversampling to training data")
+    parser.add_argument("--smote_strategy", type=str, default="auto", help="SMOTE sampling_strategy (auto, float, or dict)")
     args = parser.parse_args()
 
     run_client(
@@ -166,4 +177,6 @@ if __name__ == "__main__":
         model_name=args.model,
         server_address=args.server_address,
         data_path=args.data,
+        use_smote=args.use_smote,
+        smote_strategy=args.smote_strategy
     )

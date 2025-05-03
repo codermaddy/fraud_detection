@@ -19,6 +19,8 @@ def main():
     p_central.add_argument("--epochs", type=int, default=10)
     p_central.add_argument("--lr", type=float, default=1e-3)
     p_central.add_argument("--batch_size", type=int, default=64)
+    p_central.add_argument("--use_smote", action="store_true", help="Apply SMOTE oversampling to training data")
+    p_central.add_argument("--smote_strategy", type=float, default="auto", help="SMOTE sampling_strategy (auto, float, or dict)")
 
     # Distributed
     p_dist = subparsers.add_parser("train-distributed")
@@ -28,6 +30,8 @@ def main():
     p_dist.add_argument("--lr", type=float, default=1e-3)
     p_dist.add_argument("--batch_size", type=int, default=64)
     p_dist.add_argument("--world_size", type=int, default=2)
+    p_dist.add_argument("--use_smote", action="store_true", help="Apply SMOTE oversampling to training data")
+    p_dist.add_argument("--smote_strategy", type=float, default="auto", help="SMOTE sampling_strategy (auto, float, or dict)")
 
     # Federated
     p_fed = subparsers.add_parser("train-federated")
@@ -42,25 +46,27 @@ def main():
     p_fed.add_argument("--num_clients", type=int, default=2)
     p_fed.add_argument("--client_id", type=int)
     p_fed.add_argument("--data", default="data.csv")
+    p_fed.add_argument("--use_smote", action="store_true", help="Apply SMOTE oversampling to training data")
+    p_fed.add_argument("--smote_strategy", type=float, default="auto", help="SMOTE sampling_strategy (auto, float, or dict)")
 
     args = parser.parse_args()
 
     if args.command == "train-centralized":
         centralized.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
-                           lr=args.lr, batch_size=args.batch_size)
+                           lr=args.lr, batch_size=args.batch_size, use_smote=args.use_smote, smote_strategy=args.smote_strategy)
     elif args.command == "train-distributed":
         distributed.train(model_name=args.model, data_path=args.data, epochs=args.epochs,
-                          lr=args.lr, batch_size=args.batch_size, world_size=args.world_size)
+                          lr=args.lr, batch_size=args.batch_size, world_size=args.world_size, use_smote=args.use_smote, smote_strategy=args.smote_strategy)
     elif args.command == "train-federated":
         if args.server:
             fed_server.run_server(model_name=args.model, num_rounds=args.rounds,
-                                  min_clients=args.min_clients, server_address=args.addr)
+                                  min_clients=args.min_clients, server_address=args.add, use_smote=args.use_smote, smote_strategy=args.smote_strategy)
         else:
             if args.client_id is None:
                 print("Error: --client_id is required for federated client")
                 sys.exit(1)
             fed_client.run_client(client_id=args.client_id, num_clients=args.num_clients,
-                                  model_name=args.model, server_address=args.addr, data_path=args.data)
+                                  model_name=args.model, server_address=args.addr, data_path=args.data, use_smote=args.use_smote, smote_strategy=args.smote_strategy)
     else:
         parser.print_help()
 

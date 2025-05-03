@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader, TensorDataset
 import torch
+from imblearn.over_sampling import SMOTE
 
 def load_data(path):
     """
@@ -45,3 +46,13 @@ def get_dataloaders(X_train, X_test, y_train, y_test, batch_size=64):
     train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True)
     test_loader  = DataLoader(test_ds, batch_size=batch_size, shuffle=False)
     return train_loader, test_loader
+
+def apply_smote(X, y, sampling_strategy='auto', random_state=42):
+    """
+    Apply SMOTE to (X, y) to synthetically oversample the minority class.
+    - sampling_strategy: passed directly to SMOTE (e.g. 'auto', float, or dict).
+    Returns (X_resampled, y_resampled).
+    """
+    sm = SMOTE(sampling_strategy=sampling_strategy, random_state=random_state)
+    X_res, y_res = sm.fit_resample(X, y)
+    return X_res, y_res

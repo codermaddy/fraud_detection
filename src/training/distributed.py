@@ -7,7 +7,7 @@ import torch.distributed as dist
 import torch.multiprocessing as mp
 from torch.utils.data import DataLoader, DistributedSampler
 
-from utils.data_utils import load_data, preprocess_data, split_data, get_dataloaders
+from utils.data_utils import load_data, preprocess_data, split_data, get_dataloaders, apply_smote
 from models.dnn import DNN
 from models.autoencoder import Autoencoder
 from models.cnn import CNNClassifier
@@ -17,7 +17,7 @@ from evaluation.report import print_metrics, save_metrics
 from utils.logging import get_logger
 import argparse
 
-def ddp_train(rank, world_size, model_name, data_path, epochs, lr, batch_size):
+def ddp_train(rank, world_size, model_name, data_path, epochs, lr, batch_size, use_smote=False, smote_strategy='auto'):
     # Init process group
     backend = "nccl" if torch.cuda.is_available() else "gloo"
     dist.init_process_group(
@@ -40,6 +40,12 @@ def ddp_train(rank, world_size, model_name, data_path, epochs, lr, batch_size):
     train_loader, test_loader = get_dataloaders(X_train, X_test, y_train, y_test, batch_size)
 
     sampler = DistributedSampler(train_loader.dataset, num_replicas=world_size, rank=rank)
+    
+    if use_smote and rank == 0:
+        logger = get_logger(f"ddp_rank{rank}")
+        logger.info(f"[Rank {rank}] Applying SMOTE with strategy={smote_strategy}")
+        X_train, y_train = apply_smote(X_train, y_train, sampling_strategy=smote_strategy)
+
     train_loader = DataLoader(train_loader.dataset, batch_size=batch_size, sampler=sampler)
 
     input_dim = X_train.shape[1]
@@ -174,6 +180,8 @@ if __name__ == "__main__":
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--batch_size", type=int, default=64)
     parser.add_argument("--world_size", type=int, default=2)
+    parser.add_argument("--use_smote", action="store_true", help="Apply SMOTE oversampling to training data")
+    parser.add_argument("--smote_strategy", type=str, default="auto", help="SMOTE sampling_strategy (auto, float, or dict)")
     args = parser.parse_args()
     train(
         model_name=args.model,
@@ -182,4 +190,6 @@ if __name__ == "__main__":
         lr=args.lr,
         batch_size=args.batch_size,
         world_size=args.world_size,
+        use_smote=args.use_smote,
+        mote_strategy=args.smote_strategy,
     )

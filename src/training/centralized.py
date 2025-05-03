@@ -4,7 +4,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-from utils.data_utils import load_data, preprocess_data, split_data, get_dataloaders
+from utils.data_utils import load_data, preprocess_data, split_data, get_dataloaders, apply_smote
 from models.dnn import DNN
 from models.autoencoder import Autoencoder
 from models.cnn import CNNClassifier
@@ -14,7 +14,7 @@ from evaluation.report import print_metrics, save_metrics
 from utils.logging import get_logger
 import argparse
 
-def train(model_name='dnn', data_path='data.csv', epochs=10, lr=1e-3, batch_size=64):
+def train(model_name='dnn', data_path='data.csv', epochs=10, lr=1e-3, batch_size=64, use_smote=False, smote_strategy='auto'):
     logger = get_logger("centralized")
     logger.info(f"Starting centralized training: model={model_name}, data={data_path}")
 
@@ -32,6 +32,12 @@ def train(model_name='dnn', data_path='data.csv', epochs=10, lr=1e-3, batch_size
     df = preprocess_data(df)
     X_train, X_test, y_train, y_test = split_data(df)
     train_loader, test_loader = get_dataloaders(X_train, X_test, y_train, y_test, batch_size)
+
+    if use_smote:
+        logger.info(f"Applying SMOTE with strategy={smote_strategy}")
+        X_train, y_train = apply_smote(X_train, y_train, sampling_strategy=smote_strategy)
+        X_test, y_test = apply_smote(X_test, y_test, sampling_strategy=smote_strategy)
+
     input_dim = X_train.shape[1]
 
     # Initialize model & loss
@@ -117,6 +123,8 @@ if __name__ == "__main__":
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--batch_size", type=int, default=64)
+    parser.add_argument("--use_smote", action="store_true", help="Apply SMOTE oversampling to training data")
+    parser.add_argument("--smote_strategy", type=str, default="auto", help="SMOTE sampling_strategy (auto, float, or dict)")
     args = parser.parse_args()
     train(
         model_name=args.model,
@@ -124,4 +132,6 @@ if __name__ == "__main__":
         epochs=args.epochs,
         lr=args.lr,
         batch_size=args.batch_size,
+        use_smote=args.use_smote,
+        smote_strategy=args.smote_strategy
     )
